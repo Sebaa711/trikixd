@@ -15,10 +15,12 @@ const tictactoe = (function(doc) {
 
     allCells.forEach((cell) => {
         cell.addEventListener("click", (e) => {
-            if( gameOver || !e.target.classList.contains("available")) return;
-            e.target.classList.remove("available");
             const targetRow = e.target.getAttribute("data-row");
             const targetColumn = e.target.getAttribute("data-column");
+            if( board[targetRow][targetColumn] === human || 
+                board[targetRow][targetColumn] === cpu || 
+                gameOver || !e.target.classList.contains("available")) return;
+            e.target.classList.remove("available");
             board[targetRow][targetColumn] = human;
             e.target.innerText = human;
 
